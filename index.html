@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/bootstrap-icons-1.9.1/bootstrap-icons.css">
+    <link rel="stylesheet" href="./styles/css/index.css">
+    <link rel="icon" href="./imagens/icon/tempo.png" type="image/x-icon">
+    <title>DEVinKnowledge</title>
+</head>
+<body>
+
+    <header class="header">
+
+        <h1>Knowledge</h1>
+
+    </header>
+
+
+    <main>
+        <div class="div-main">
+            <aside class="div-esquerdo">
+                <div class="titulo-devinknowledge">
+                    <div class="titulo-icone">
+                        <i class="bi bi-journal-arrow-up"></i>
+                    </div>
+                    <div>
+                        <h1>DEVinKnowledge</h1>
+                        <h2 class="letra-subtitulo">Learn, code and save</h2>
+                    </div>
+                </div>
+                <form action="#" id="form">
+                    <div class="div-item">
+                        <div>
+                            <label for="form-titulo">Titulo</label>
+                        </div>
+                        <div>
+                            <input value="" class="size-inputs-text" type="text" id="form-titulo" placeholder="Digite um titulo" autocomplete="off" required>
+                        </div>
+                        <span class="erro-vermelho" id="erro-titulo">
+                            Titulo invalido!
+                        </span>
+                    </div>
+
+                    <div class="div-item">
+                        <div>
+                            <label for="form-linguagem-skill">Linguagem/Skill</label>
+                        </div>
+                        <div>
+                            <input value="" class="size-inputs-text" type="text" id="form-linguagem-skill" placeholder="Digite uma linguagem ou skill" autocomplete="off" required>
+                        </div>
+                        <span class="erro-vermelho" id="erro-linguagem-skill">
+                            Linguagem / Skill invalidos!
+                        </span>
+                    </div>
+
+                    <div class="div-item">
+                        <div>
+                            <label for="form-categoria">Categoria</label>
+                        </div>
+                        <div>
+                            <select class="size-inputs-text" id="form-categoria" placeholder="Selecione uma categoria" required>
+                                <option></option>
+                                <option value="" disabled selected>Selecione uma categoria</option>
+                                <option value="FrontEnd">FrontEnd</option>
+                                <option value="BackEnd">BackEnd</option>
+                                <option value="FullStack">FullStack</option>
+                                <option value="Comportamental/Soft">Comportamental/Soft</option>
+                            </select>
+                        </div>
+                        <span class="erro-vermelho" id="erro-categoria">
+                            Selecione uma categoria!
+                        </span>
+                    </div>
+
+                    <div class="div-item">
+                        <div>
+                            <label for="form-descricao">Descrição</label>
+                        </div>
+                        <div>
+                            <textarea class="size-inputs-area" id="form-descricao" placeholder="Escreva aqui o detalhamento da sua dica..." required></textarea>
+                        </div>
+                        <span class="erro-vermelho" id="erro-descricao">
+                            Descrição invalida!
+                        </span>
+                    </div>
+
+                    <div class="div-item">
+                        <div>
+                            <label for="form-video-youtube">Video do Youtube*</label>
+                        </div>
+                        <div>
+                            <input value="" class="size-inputs-text" type="url" id="form-video-youtube" placeholder="https://www.youtube.com" autocomplete="off">
+                        </div>
+                        <span class="erro-vermelho" id="erro-video">
+                            Endereço invalido!
+                        </span>
+                    </div>
+
+                    <div class="div-item">
+                        <input class="form-botao cor-fundo-amarelo" type="reset" value="Limpar" id="form-botao-limpa">
+                        <input class="form-botao cor-fundo-verde" type="submit" value="Salvar" id="form-botao-salvar">
+                        <input type="hidden" id="form-id" value="">
+                    </div>
+                </form>
+            </aside>
+
+            <aside class="div-direito">
+                <div class="div-painel">
+                    <div class="total-card">
+                        <label class="div-painel-card jcontent-center">Total</label>
+                        <label class="div-painel-card-resultado jcontent-center" id="card-total">0</label>
+                    </div>
+
+                    <div class="total-card">
+                        <label class="div-painel-card jcontent-center">FrontEnd</label>
+                        <label class="div-painel-card-resultado jcontent-center" id="frontend-resultado">0</label>
+                    </div>
+
+                    <div class="total-card">
+                        <label class="div-painel-card jcontent-center">BackEnd</label>
+                        <label class="div-painel-card-resultado jcontent-center" id="backend-resultado">0</label>
+                    </div>
+
+                    <div class="total-card">
+                        <label class="div-painel-card jcontent-center">FullStack</label>
+                        <label class="div-painel-card-resultado jcontent-center" id="fullstack-resultado">0</label>
+                    </div>
+
+                    <div class="total-card">
+                        <label class="div-painel-card jcontent-center">SoftSkill</label>
+                        <label class="div-painel-card-resultado jcontent-center" id="softskill-resultado">0</label>
+                    </div>
+
+                </div>
+
+                <div class="div-buscar">
+                    <input class="size-inputs-text" id="div-buscar-campo-localiza" type="text" value="" placeholder="Digite um titulo para buscar..." autocomplete="off">
+                    <i class="bi bi-search icons-busca" id="div-buscar-localiza"></i>
+                    <i class="bi bi-x-circle icons-busca" id="div-buscar-cancela"></i>
+                </div>
+
+                <div class="div-cards" id="lista-cards">
+                    <!-- lista de cards -->    
+                </div>
+            </aside>
+            <!-- Modal -->
+            <div class="modal-body-full" id="modal">
+
+            </div>
+       
+        </div>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <label>DevInHouse &bigcirc;</label>
+
+    </footer>
+    
+</body>
+
+<script type="module" src="./scripts/js/index.js"></script>
+</html>
