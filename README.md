@@ -28,3 +28,9 @@ Um navegador de internet.
 
 #### Extra
 - [Bootstrap Icons](https://icons.getbootstrap.com)
+
+## Demostrativo da tela
+
+<h1 align="center">
+  <img alt="Tela Inicial" src="./imagens/TelaInicial.png" />
+</h1>
