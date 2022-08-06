@@ -52,12 +52,14 @@ class BancoDados {
     }
 
     localizaTitulo(titulo){
-        var itemIndex = Array()
+        let itemIndex = []
 
-        itemIndex = this.bd.map((item, index) => {
-            if (item.titulo.includes(titulo)) {
-                console.log(item.titulo.includes(titulo))
-                itemIndex.push(index)
+        itemIndex = this.bd.filter((item) => {
+            let tituloBancoDados = item.titulo.toLowerCase()
+            let tituloBusca = titulo.toLowerCase()
+
+            if (tituloBancoDados.includes(tituloBusca)) {
+                return item
             }
         })
         return itemIndex

@@ -1,14 +1,5 @@
 import {BancoDados} from "./classes/BancoDadosClass.js"
-
-function fechaModal() {
-    let modal = document.getElementById("modal")
-    modal.style = "visibility: hidden"
-}
-
-function abreModal() {
-    let modal = document.getElementById("modal")
-    modal.style = "visibility: visible"
-}
+import { fechaModal , abreModal } from "./Modal.js"
 
 function mensagemSistema(mensagem, id = null){
     let modal = document.getElementById("modal")

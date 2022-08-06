@@ -1,7 +1,9 @@
-import { mensagemSistema } from "./MensagemSistema.js"
+import {mensagemSistema} from "./MensagemSistema.js"
 import {BancoDados} from "./classes/BancoDadosClass.js"
+import validador from "./ValidadorCampos.js"
+import {videoYoutube} from "./VideoYoutube.js"
 
-function limpaCard() {
+function limpaCards() {
     let divCard = document.getElementById("lista-cards")
     divCard.innerHTML = ""
 }
@@ -15,17 +17,20 @@ function montaCards() {
 }
 
 function atualizaCards() {
-    limpaCard()
+    limpaCards()
     montaCards()
 }
 
 function localizaCardPorTitulo(titulo) {
     let bd = new BancoDados()
-    const id = bd.localizaTitulo(titulo)
-    if (id != -1) {
-        limpaCard()
-        criaCard(bd.coletaUmDado(id))
-
+    let itensEncontrados = bd.localizaTitulo(titulo)
+    
+    if (itensEncontrados.length >= 1) {
+        limpaCards()
+        itensEncontrados.forEach(itenEncontrado => {
+            //console.log(itenEncontrado.id)
+            criaCard(itenEncontrado)
+        })
     } else {
         const mensagem = {
             titulo : "Não Encontrado",
@@ -62,6 +67,51 @@ function salvaCardEditado(elementoForm) {
     let bd = new BancoDados()
     bd.editaUmItem(elementoForm)
     atualizaCards()
+}
+
+function salvaNovoCard(elementoForm) {
+    elementoForm.preventDefault()
+        
+        let form = document.getElementById("form")
+
+        let elementos = {
+            id : form["form-id"]["value"],
+            titulo : form["form-titulo"]["value"],
+            linguagemSkill : form["form-linguagem-skill"]["value"],
+            categoria : form["form-categoria"]["value"],
+            descricao : form["form-descricao"]["value"],
+            videoYoutube : form["form-video-youtube"]["value"],
+        }
+
+        if(validador(elementos)) {
+            if (elementos.id != "") {
+                salvaCardEditado(elementos)
+
+                let id = document.getElementById("form-id")
+                id.value = ""
+
+                var mensagem = {
+                    titulo : "Editado",
+                    corpo : "Dica editada e salva na base do conhecimento."
+                }
+                mensagemSistema(mensagem)
+            } else {
+                criaCard(elementos)
+
+                var mensagem = {
+                    titulo : "Sucesso",
+                    corpo : "Dica cadastrada na base do conhecimento."
+                }
+                mensagemSistema(mensagem)
+            }
+
+            const limpar = document.getElementById("form-botao-limpa")
+            limpar.click()
+        }
+}
+
+function montaCardsLocalizados(itens) {
+    console.log(itens)
 }
 
 function criaCard(elementoForm) {
@@ -115,7 +165,6 @@ function criaCard(elementoForm) {
     cardI.appendChild(linkDeleta)
 
     let linkEdit = document.createElement("a")
-    linkEdit.setAttribute("class", elementoForm.id)
 
     let edita = document.createElement("i")
     edita.setAttribute("class", "bi bi-pencil-square")
@@ -131,11 +180,16 @@ function criaCard(elementoForm) {
 
     if(elementoForm.videoYoutube) {
         let linkVerVideo = document.createElement("a")
-        linkVerVideo.setAttribute("class", elementoForm.id)
-
+        
         let verVideo = document.createElement("i")
         verVideo.setAttribute("class", "bi bi-camera-reels")
         linkVerVideo.appendChild(verVideo)
+        linkVerVideo.onmousedown = () => {
+            let bd = new BancoDados()
+            bd.localizaIndice(elementoForm.id)
+            const index = bd.localizaIndice(elementoForm.id)
+            videoYoutube(bd.coletaUmDado(index))
+        }
 
         cardI.appendChild(linkVerVideo)
     }
@@ -147,4 +201,4 @@ function criaCard(elementoForm) {
 }
 
 
-export { criaCard, montaCards, salvaCardEditado, atualizaCards, localizaCardPorTitulo }
+export { montaCardsLocalizados, salvaNovoCard, criaCard, montaCards, salvaCardEditado, atualizaCards, localizaCardPorTitulo }
