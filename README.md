@@ -9,7 +9,7 @@
 ### Funções
 
 - [x] Cadastro de dicas
-- [x] Edição de dica já casdastrada
+- [x] Edição de dica já cadastrada
 - [x] Exclusao de dica
 - [x] Painel de Estatística
 - [x] Visualização de video
